@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h6 class="text-white">Rover: {{rover | uppercase}}</h6>
+      <h6 class="text-white">Camera: {{camera}}</h6>
+      <h6 class="text-white">Sol: {{sol}}</h6>
+    </div>
+    <div class="view-change-buttons-container col" >
+      <button
+        type="button"
+        class="channge-view-button btn "
+        [ngClass]="{'btn-light': isListView,'btn-outline-light': !isListView}"
+        data-mdb-ripple-color="dark"
+        (click)="showListView()"
+      >
+        List view
+      </button>
+      <button
+        type="button"
+        class="channge-view-button btn"
+        [ngClass]="{'btn-light': !isListView,'btn-outline-light': isListView}"
+
+        data-mdb-ripple-color="dark"
+        (click)="showGridView()"
+      >
+        Grid view
+      </button>
+    </div>
+  </div>
+
+  <div class="empty-message container text-center" *ngIf="isEmpty$ | async">
+    <h2 class="text-white">Unfortunately, this camera did not take pictures on this day</h2>
+    <button [routerLink]="['/']" type="button" class="btn btn-outline-light return-button">
+      Return to the main page
+    </button>
+  </div>
+  <div *ngIf="loading$ | async" class="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+  <div class="container-xxl text-center" *ngIf="loaded$ | async">
+    <div class="grid-view row" *ngIf="!isListView" [@fadeIn]>
+      <div class="grid-view__item col-md-4" *ngFor="let photo of photos$ | async">
+          <img [src]="photo.img_src" width="300px" height="200px">
+      </div>
+    </div>
+    <div class="list-view" *ngIf="isListView" [@fadeIn]>
+      <div class="list-view__item" *ngFor="let photo of photos$ | async">
+        <img [src]="photo.img_src" alt="" width="100%" height="">
+      </div>
+    </div>
+    <div class="container text-center">
+      <button *ngIf="loadMoreLoaded$ | async" (click)="loadMore()" type="button" class="btn btn-outline-light">
+        Load More
+      </button>
+      <div *ngIf="loadMoreLoading$ | async" class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+

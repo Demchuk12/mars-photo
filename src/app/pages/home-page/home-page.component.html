@@ -1,0 +1,126 @@
+<div class="container-fluid">
+  <div class="banner p-5 text-center bg-image">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white" [@fadeIn]>
+          <h1 class="mb-3">Explore Mars</h1>
+          <h4 class="mb-3">Here you can see thousands of photos of Mars</h4>
+          <a class="btn btn-outline-light btn-lg" href="#!" role="button">
+            Go to Photo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100 bg-dark">
+        <img src="assets/image/Opportunity.jpg" class="card-img-top" height="350px"/>
+        <form [formGroup]="opportunityForm" (ngSubmit)="opportunitySubmit()">
+          <div class="card-body">
+            <h5 class="card-title text-white">Opportunity</h5>
+            <div class="select">
+              <select class="select-text" formControlName="camera">
+                <option value="FHAZ">Front Hazard Avoidance Camera</option>
+                <option value="PHAZ">Rear Hazard Avoidance Camera</option>
+                <option value="NAVCAM">Navigation Camera</option>
+                <option value="PANCAM">Panoramic Camera</option>
+                <option value="MINITES">Miniature Thermal Emission Spectrometer (Mini-TES)</option>
+              </select>
+              <span class="select-highlight"></span>
+              <span class="select-bar"></span>
+              <label class="select-label">Select the camera</label>
+            </div>
+            <div class="textfield">
+              <input class="input" placeholder=" " type="text" formControlName="sol">
+              <label class="input-label">Enter sol day</label>
+            </div>
+            <div class="validation"
+              *ngIf="opportunityForm.get('sol')?.invalid && opportunityForm.get('sol')?.touched ">
+              <small class="valid__message">This field is reqiured and can contain number of no more than 5111</small>
+            </div>
+
+          </div>
+          <div class="card-footer text-center">
+            <button type="submit" class="btn btn-light" data-mdb-ripple-color="dark">Explore with Opportunity</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 bg-dark">
+        <img src="assets/image/Spirit.jpg" class="card-img-top" height="350px"/>
+        <form [formGroup]="spiritForm">
+          <div class="card-body">
+            <h5 class="card-title text-white">Spirit</h5>
+            <div class="select">
+              <select class="select-text" formControlName="camera">
+                <option value="FHAZ">Front Hazard Avoidance Camera</option>
+                <option value="PHAZ">Rear Hazard Avoidance Camera</option>
+                <option value="NAVCAM">Navigation Camera</option>
+                <option value="PANCAM">Panoramic Camera</option>
+                <option value="MINITES">Miniature Thermal Emission Spectrometer (Mini-TES)</option>
+              </select>
+              <span class="select-highlight"></span>
+              <span class="select-bar"></span>
+              <label class="select-label">Select the camera</label>
+            </div>
+            <div class="textfield">
+              <input class="input" placeholder=" " type="text" formControlName="sol">
+              <label class="input-label">Enter sol day</label>
+            </div>
+            <div class="validation"
+            *ngIf="spiritForm.get('sol')?.invalid && spiritForm.get('sol')?.touched ">
+            <small class="valid__message">This field is reqiured and can contain number of no more than 2208</small>
+          </div>
+          </div>
+          <div class="card-footer text-center">
+            <button type="submit" (click)="spiritSubmit()" class="btn btn-light" data-mdb-ripple-color="dark">Explore with Spirit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 bg-dark" >
+        <img src="assets/image/Curiosity.png" class="card-img-top" height="350px"/>
+        <form [formGroup]="curiosityForm" (ngSubmit)="curiositySubmit()">
+          <div class="card-body" >
+            <h5 class="card-title text-white"> Curiosity </h5>
+            <div class="select">
+              <select class="select-text" formControlName="camera">
+                <option value="FHAZ">Front Hazard Avoidance Camera</option>
+                <option value="PHAZ">Rear Hazard Avoidance Camera</option>
+                <option value="MAST">Mast Camera</option>
+                <option value="CHEMCAM">Chemistry and Camera Complex</option>
+                <option value="MAHLI">Mars Hand Lens Imager</option>
+                <option value="MARDI">Mars Descent Imager</option>
+                <option value="NAVCAM">Navigation Camera</option>
+              </select>
+              <span class="select-highlight"></span>
+              <span class="select-bar"></span>
+              <label class="select-label">Select the camera</label>
+            </div>
+            <div class="textfield">
+              <input class="input" placeholder=" " type="text" formControlName="sol">
+              <label class="input-label">Enter sol day</label>
+            </div>
+            <div class="validation"
+              *ngIf="curiosityForm.get('sol')?.invalid && curiosityForm.get('sol')?.touched ">
+              <small class="valid__message">This field is reqiured and can contain number of no more than 3663</small>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <button type="submit" class="btn btn-light explore-button" data-mdb-ripple-color="dark">Explore with Curiosity</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
